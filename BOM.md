@@ -18,7 +18,7 @@
 | [330 Ohm Resistors 1/4W (Pack of 10)](https://www.4project.co.il/product/resistor-330-kilo-ohm-0.25w-pth) | Current limiting to protect the LED | 1 | $0.97 | $0.97 | [4Project](https://www.4project.co.il/product/resistor-330-kilo-ohm-0.25w-pth) |
 | [Female to Female Jumper Wires 20cm (40 pcs)](https://www.4project.co.il/product/dupont-cable-40p-20cm-female-female) | Wiring the DHT22 and LED to the ESP32 pins | 1 | $1.91 | $1.91 | [4Project](https://www.4project.co.il/product/dupont-cable-40p-20cm-female-female) |
 | **Parts subtotal** | — | — | — | **$35.59** | — |
-| **Tax & shipping** | — | — | — | **$0.00** | — |
-| **Total** | — | — | — | **$35.59** | — |
+| **Tax & shipping** | — | — | — | **$14.40** | — |
+| **Total** | — | — | — | **$49.99** | — |
 
-$29.41 left of the tier's funding.
+$15.01 left of the tier's funding.
