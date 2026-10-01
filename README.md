@@ -55,3 +55,11 @@ The 3D renders and STL files are available below:
 
 * [Base STL Model](stl/SentinelNode_RPi4_Base_v1.stl)
 * [Lid STL Model](stl/SentinelNode_RPi4_Lid_v1.stl)
+
+### Reality Check and Design Pivot
+When I started putting together the final parts list I hit a wall with the Tier 2 funding limit. A Raspberry Pi 4 costs way more than the 65 dollars allowed. I looked into moving up to Tier 3, but that requires adding a motorized component to the build. Adding a fan or a servo just to inflate the budget felt like over engineering a project that should remain simple and reliable.
+
+This forced me to look back at my original reason for using a Pi 4. I wanted to avoid writing annoying network code in C++ and I wanted a real database to keep history. Then I realized that the physical monitor is literally sitting right next to my 24/7 backend server. There is no reason the monitor itself needs to host the database.
+
+I am swapping the Pi 4 for a cheap ESP32 C6 development board. The ESP32 will act as a dumb sensor node. All it has to do is read the DHT22 and send a basic HTTP POST request over the local Wi-Fi to my main server. My actual server will run the Node.js API, write the history to SQLite, and host the web dashboard. This keeps the project well within the Tier 2 budget and honestly makes the whole architecture much smarter by offloading the heavy work to the machine that is actually built for it.
+
