@@ -8,7 +8,7 @@ I'll use a Raspberry Pi 4, a DHT22 sensor, and some LEDs inside a custom case. T
 
 The system reads temperature and humidity data from the DHT22 sensor, processes it on the Raspberry Pi 4, and triggers the warning LEDs if thresholds are exceeded. Below is the initial design concept:
 
-![System Architecture](system_architecture.png)
+![System Architecture](images/system_architecture.png)
 
 ## Why a Raspberry Pi 4?
 
@@ -29,7 +29,7 @@ The core components for this build are:
 
 The schematic below outlines the GPIO connections for the components. The DHT22 requires 3.3V power, and the status LED is connected with a 330Ω resistor to prevent overdrawing current from the Pi.
 
-![hardware-schematic](hardware-schematic.png)
+![hardware-schematic](images/hardware-schematic.png)
 
 ### Software Stack
 
@@ -48,10 +48,10 @@ Leaving a bare board and breadboard sitting on my server isn't ideal. Also, sinc
 
 The 3D renders and STL files are available below:
 
-![Enclosure Internals](Screenshot_1.jpg)
-![Enclosure Top View](Screenshot_2.jpg)
-![Enclosure Side View](Screenshot_3.jpg)
-![Enclosure Front View](Screenshot_4.jpg)
+![Enclosure Internals](images/Screenshot_1.png)
+![Enclosure Top View](images/Screenshot_2.png)
+![Enclosure Side View](images/Screenshot_3.png)
+![Enclosure Front View](images/Screenshot_4.png)
 
-* [Base STL Model](SentinelNode_RPi4_Base_v1.stl)
-* [Lid STL Model](SentinelNode_RPi4_Lid_v1.stl)
+* [Base STL Model](stl/SentinelNode_RPi4_Base_v1.stl)
+* [Lid STL Model](stl/SentinelNode_RPi4_Lid_v1.stl)
