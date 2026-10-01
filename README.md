@@ -40,3 +40,18 @@ The backend is written in Node.js, running as a background service on the Pi. I 
 *   **GPIO Control:** The backend parses the sensor data and pulls GPIO17 HIGH to trigger the warning LED if the temperature crosses a defined threshold.
 *   **Frontend Dashboard:** A basic HTML/JS page that fetches the latest stats from the Node API to display current temperature, humidity, and the LED warning status.
 
+## Enclosure & 3D Design
+
+I'm currently applying for a hardware grant through Hack Club's Half Life program, so I don't have the Raspberry Pi 4 or the sensors yet. To make sure the project is ready when the parts arrive, I designed a custom enclosure in Onshape.
+
+Leaving a bare board and breadboard sitting on my server isn't ideal. Also, since Pi 4s are known to run hot, I had to make sure the board's heat wouldn't affect the DHT22 readings. The case design includes ventilation slots to isolate the sensor and allow for proper airflow.
+
+The 3D renders and STL files are available below:
+
+![Enclosure Internals](Screenshot_1.jpg)
+![Enclosure Top View](Screenshot_2.jpg)
+![Enclosure Side View](Screenshot_3.jpg)
+![Enclosure Front View](Screenshot_4.jpg)
+
+* [Base STL Model](SentinelNode_RPi4_Base_v1.stl)
+* [Lid STL Model](SentinelNode_RPi4_Lid_v1.stl)
