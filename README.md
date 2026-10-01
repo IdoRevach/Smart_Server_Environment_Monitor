@@ -24,3 +24,9 @@ The core components for this build are:
 * DHT22 Temperature and Humidity Sensor
 * Red Warning LED
 * Basic wiring parts (jumper wires and a resistor)
+
+### Wiring Schematic
+
+The schematic below outlines the GPIO connections for the components. The DHT22 requires 3.3V power, and the status LED is connected with a 330Ω resistor to prevent overdrawing current from the Pi.
+
+![hardware-schematic](hardware-schematic.png)
