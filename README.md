@@ -30,3 +30,13 @@ The core components for this build are:
 The schematic below outlines the GPIO connections for the components. The DHT22 requires 3.3V power, and the status LED is connected with a 330Ω resistor to prevent overdrawing current from the Pi.
 
 ![hardware-schematic](hardware-schematic.png)
+
+### Software Stack
+
+The backend is written in Node.js, running as a background service on the Pi. I wanted a lightweight stack that can poll the sensor, log the data, and serve a simple dashboard without eating up system resources.
+
+*   **Node.js Server:** Handles the main polling loop for the DHT22 and runs the API endpoints.
+*   **SQLite:** Used for local data logging. It's perfectly suited for this because it stores everything in a single local file, avoiding the overhead of a full database server while still letting me query historical temperature trends.
+*   **GPIO Control:** The backend parses the sensor data and pulls GPIO17 HIGH to trigger the warning LED if the temperature crosses a defined threshold.
+*   **Frontend Dashboard:** A basic HTML/JS page that fetches the latest stats from the Node API to display current temperature, humidity, and the LED warning status.
+
