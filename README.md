@@ -63,3 +63,22 @@ This forced me to look back at my original reason for using a Pi 4. I wanted to 
 
 I am swapping the Pi 4 for a cheap ESP32 C6 development board. The ESP32 will act as a dumb sensor node. All it has to do is read the DHT22 and send a basic HTTP POST request over the local Wi-Fi to my main server. My actual server will run the Node.js API, write the history to SQLite, and host the web dashboard. This keeps the project well within the Tier 2 budget and honestly makes the whole architecture much smarter by offloading the heavy work to the machine that is actually built for it.
 
+### V2 Architecture: The Distributed Approach
+
+With the pivot to the ESP32-C6, the system architecture is now distributed. The ESP32 acts purely as an edge sensor node, while my existing 24/7 server handles the backend logic, database, and dashboard.
+
+**1. The Edge Node (ESP32-C6):**
+The microcontroller's only job is to poll the DHT22 sensor for temperature and humidity data and send it as a JSON payload via HTTP POST requests over the local Wi-Fi. It also controls the red warning LED, toggling it based on predefined temperature thresholds to provide immediate physical feedback.
+
+**2. The Backend (Existing Local Server):**
+Instead of running on the monitor itself, the Node.js API and SQLite database now live on my main server. The backend receives the incoming POST requests, securely logs the timeseries data into the SQLite database, and serves the frontend web dashboard. 
+
+Here is the updated system architecture:
+
+![System Architecture V2](images/system_architecture_v2.png)
+
+### Updated V2 Hardware Design
+
+Below is the updated engineering schematic for the new ESP32-C6 electrical setup:
+
+![Electrical Schematic V2](images/hardware_schematic_v2.png)
