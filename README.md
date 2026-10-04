@@ -82,3 +82,18 @@ Here is the updated system architecture:
 Below is the updated engineering schematic for the new ESP32-C6 electrical setup:
 
 ![Electrical Schematic V2](images/hardware_schematic_v2.png)
+
+## 3D Enclosure
+I had to update the Onshape model to fit the ESP32 footprint instead of the Pi. The case separates the sensor from the board's heat.
+
+![Case Front](New_Model.png)
+![Case Side](New_Model_2.png)
+![Case Internals](New_Model_3.png)
+
+## Code & Setup
+I uploaded everything straight to the root directory for now. (Note: I accidentally named them `main.py.py` and `server.js.js` on upload, just rename them back to normal when you clone).
+
+* **ESP32:** Flash it with MicroPython, update the Wi-Fi details, and run `main.py`.
+* **Backend:** Run `npm install express better-sqlite3`. 
+* **Dashboard:** Make a folder called `public` next to the server script and put `index.html` inside it. 
+* Run `node server.js` and hit port 3000 in your browser.
