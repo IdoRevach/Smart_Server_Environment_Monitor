@@ -86,9 +86,14 @@ Below is the updated engineering schematic for the new ESP32-C6 electrical setup
 ## 3D Enclosure
 I had to update the Onshape model to fit the ESP32 footprint instead of the Pi. The case separates the sensor from the board's heat.
 
-![Case Front](New_Model.png)
-![Case Side](New_Model_2.png)
-![Case Internals](New_Model_3.png)
+The 3D renders and STL files are available below:
+
+![Case Front](images/New_Model.png)
+![Case Side](images/New_Model_2.png)
+![Case Internals](images/New_Model_3.png)
+
+* [Base STL Model](stl/SentinelNode_ESP32_Base_v2.stl)
+* [Lid STL Model](stl/SentinelNode_ESP32_Lid_v2.stl)
 
 ## Code & Setup
 I uploaded everything straight to the root directory for now. (Note: I accidentally named them `main.py.py` and `server.js.js` on upload, just rename them back to normal when you clone).
