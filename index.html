@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environment Monitor</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #121212;
+            color: #e8e8e8;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+            font-weight: 600;
+        }
+
+        #last-updated {
+            color: #999;
+            font-size: 14px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: #1d1d1d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 24px;
+            min-height: 150px;
+        }
+
+        .card h2 {
+            margin: 0 0 18px;
+            font-size: 17px;
+            font-weight: 500;
+            color: #aaa;
+        }
+
+        .value {
+            font-size: 36px;
+            font-weight: 600;
+        }
+
+        #led-status {
+            display: inline-block;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .led-on {
+            color: #ff3b3b;
+            animation: pulse 1.2s infinite;
+        }
+
+        .led-off {
+            color: #3dcc72;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.45;
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 20px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Environment Monitor</h1>
+            <div id="last-updated">Last updated: --</div>
+        </header>
+
+        <main class="grid">
+            <div class="card">
+                <h2>Temperature</h2>
+                <div class="value" id="temperature">-- °C</div>
+            </div>
+
+            <div class="card">
+                <h2>Humidity</h2>
+                <div class="value" id="humidity">-- %</div>
+            </div>
+
+            <div class="card">
+                <h2>Warning LED</h2>
+                <div id="led-status" class="led-off">OFF</div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const temperatureElement = document.getElementById("temperature");
+        const humidityElement = document.getElementById("humidity");
+        const ledStatusElement = document.getElementById("led-status");
+        const lastUpdatedElement = document.getElementById("last-updated");
+
+        async function updateEnvironment() {
+            try {
+                const response = await fetch("/api/current");
+
+                if (!response.ok) {
+                    throw new Error("API request failed");
+                }
+
+                const data = await response.json();
+
+                temperatureElement.textContent = `${data.temperature} °C`;
+                humidityElement.textContent = `${data.humidity} %`;
+
+                if (data.alert_active === 1) {
+                    ledStatusElement.textContent = "ON (HOT)";
+                    ledStatusElement.className = "led-on";
+                } else {
+                    ledStatusElement.textContent = "OFF";
+                    ledStatusElement.className = "led-off";
+                }
+
+                // The API timestamp is UTC without the timezone marker, so add Z before parsing.
+                const updatedDate = new Date(data.timestamp + "Z");
+
+                if (!isNaN(updatedDate.getTime())) {
+                    lastUpdatedElement.textContent =
+                        `Last updated: ${updatedDate.toLocaleString()}`;
+                }
+            } catch (error) {
+                // Keep the last valid values on screen if the API is temporarily unavailable.
+                console.error("Failed to fetch environment data:", error);
+            }
+        }
+
+        updateEnvironment();
+        setInterval(updateEnvironment, 5000);
+    </script>
+</body>
+</html>
